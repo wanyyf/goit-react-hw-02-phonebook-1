@@ -1,7 +1,6 @@
 import { nanoid } from 'nanoid';
 import React, { Component } from 'react';
 import { Form, Label, Input, SubmitButton } from './PhonebookStyled';
-import PropTypes from 'prop-types';
 
 export class Phonebook extends Component {
   state = {
