@@ -1,5 +1,5 @@
-import { nanoid } from 'nanoid';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Form, Label, Input, SubmitButton } from './PhonebookStyled';
 
 export class Phonebook extends Component {
@@ -11,7 +11,6 @@ export class Phonebook extends Component {
   onInputsChange = e => {
     this.setState({
       [e.target.name]: e.currentTarget.value,
-      id: nanoid(),
     });
   };
 
@@ -54,3 +53,6 @@ export class Phonebook extends Component {
     );
   }
 }
+Phonebook.propTypes = {
+  contactAdd: PropTypes.func.isRequired,
+};

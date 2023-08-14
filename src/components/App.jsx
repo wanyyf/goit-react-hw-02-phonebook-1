@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Phonebook } from './Phonebook/Phonebook';
 import { ContactsList } from './Contacts/ContactsList';
-import FilterCont from './FilterCont/FilterCont';
+import { FilterCont } from './FilterCont/FilterCont';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { nanoid } from 'nanoid';
 
 export class App extends Component {
   state = {
@@ -18,7 +19,7 @@ export class App extends Component {
 
   getContact = (e, PhonebookState) => {
     e.preventDefault();
-    const { name, id, number } = PhonebookState;
+    const { name, number } = PhonebookState;
     if (
       this.state.contacts
         .map(item => item.name.toLowerCase() === name.toLowerCase())
@@ -26,8 +27,9 @@ export class App extends Component {
     ) {
       alert(name + ` is already in contacts`);
     } else {
+      const nanoId = nanoid();
       this.setState(prev => ({
-        contacts: [...prev.contacts, { name, id, number }],
+        contacts: [...prev.contacts, { name, id: nanoId, number }],
       }));
     }
   };
