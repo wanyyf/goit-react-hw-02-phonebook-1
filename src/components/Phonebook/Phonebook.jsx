@@ -5,7 +5,6 @@ import { Form, Label, Input, SubmitButton } from './PhonebookStyled';
 export class Phonebook extends Component {
   state = {
     name: ``,
-    id: null,
     number: '',
   };
   onInputsChange = e => {
@@ -14,14 +13,15 @@ export class Phonebook extends Component {
     });
   };
 
-  reset = e => {
-    this.props.contactAdd(e, this.state);
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.contactAdd(this.state);
     this.setState({ name: '', number: '' });
   };
 
   render() {
     return (
-      <Form onSubmit={this.reset}>
+      <Form onSubmit={this.handleSubmit}>
         <Label>Name</Label>
         <Input
           onChange={this.onInputsChange}

@@ -17,8 +17,7 @@ export class App extends Component {
     filter: '',
   };
 
-  getContact = (e, PhonebookState) => {
-    e.preventDefault();
+  getContact = PhonebookState => {
     const { name, number } = PhonebookState;
     if (
       this.state.contacts
@@ -35,9 +34,10 @@ export class App extends Component {
   };
 
   onDeleteButton = id => {
-    const { contacts } = this.state;
-    const deletedArray = contacts.filter(item => item.id !== id);
-    this.setState({ contacts: deletedArray });
+    this.setState(prevState => {
+      const updatedContacts = prevState.contacts.filter(item => item.id !== id);
+      return { contacts: updatedContacts };
+    });
   };
 
   handleFilterValue = e => {
